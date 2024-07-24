@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.bgabird.droidchat.navigation.ChatNavHost
 
 @Composable
 fun ChatApp() {
@@ -13,13 +14,13 @@ fun ChatApp() {
         bottomBar = {
             //TODO
         }
-    ) {paddingValues ->
+    ) { paddingValues ->
         Box(
             modifier = Modifier
                 .padding(paddingValues)
                 .fillMaxSize()
         ) {
-
+            ChatNavHost()
         }
     }
 }
