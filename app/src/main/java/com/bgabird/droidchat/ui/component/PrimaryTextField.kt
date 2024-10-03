@@ -114,9 +114,9 @@ fun PrimaryChatTextField(
         if (errorMessage != null) {
             Text(
                 text = errorMessage,
-                modifier = Modifier.padding(start = 16.dp),
+                modifier = Modifier.padding(start = 16.dp, top = 4.dp),
                 color = MaterialTheme.colorScheme.error,
-                style = MaterialTheme.typography.bodySmall
+                style = MaterialTheme.typography.labelMedium
             )
         }
     }
@@ -153,7 +153,7 @@ fun PrimaryChatTextFieldErrorPreview() {
         value = "",
         leftIcon = R.drawable.ic_envelope,
         placeholder = "E-mail",
-        errorMessage = "Invalid",
+        errorMessage = "Email inválido",
         keyboardType = KeyboardType.Email,
         onInputChange = {}
     )

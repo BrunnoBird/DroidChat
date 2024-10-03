@@ -73,7 +73,11 @@ fun SignInScreen(
                     onFormEvent(SignInFormEvent.EmailChanged(it))
                 },
                 placeholder = "Email",
-                leftIcon = R.drawable.ic_envelope
+                leftIcon = R.drawable.ic_envelope,
+                keyboardType = KeyboardType.Email,
+                errorMessage = formState.emailError?.let {
+                    stringResource(id = it)
+                }
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -81,11 +85,14 @@ fun SignInScreen(
             PrimaryChatTextField(
                 value = formState.password,
                 onInputChange = {
-                    onFormEvent(SignInFormEvent.EmailChanged(it))
+                    onFormEvent(SignInFormEvent.PasswordChanged(it))
                 },
                 placeholder = "Digite sua senha",
                 leftIcon = R.drawable.ic_lock,
-                keyboardType = KeyboardType.Password
+                keyboardType = KeyboardType.Password,
+                errorMessage = formState.passwordError?.let {
+                    stringResource(id = it)
+                }
             )
 
             Spacer(modifier = Modifier.height(98.dp))
