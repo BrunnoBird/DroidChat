@@ -32,7 +32,7 @@ import com.bgabird.droidchat.R
 import com.bgabird.droidchat.ui.extension.isPassword
 
 @Composable
-fun PrimaryChatTextField(
+fun PrimaryTextField(
     value: String,
     @DrawableRes leftIcon: Int? = null,
     placeholder: String = "",
@@ -125,7 +125,7 @@ fun PrimaryChatTextField(
 @Composable
 @Preview(showBackground = false)
 fun PrimaryChatTextFieldEmailPreview() {
-    PrimaryChatTextField(
+    PrimaryTextField(
         value = "",
         leftIcon = R.drawable.ic_envelope,
         placeholder = "E-mail",
@@ -137,7 +137,7 @@ fun PrimaryChatTextFieldEmailPreview() {
 @Composable
 @Preview(showBackground = false)
 fun PrimaryChatTextFieldPasswordPreview() {
-    PrimaryChatTextField(
+    PrimaryTextField(
         value = "123456",
         leftIcon = R.drawable.ic_lock,
         placeholder = "Password",
@@ -149,7 +149,7 @@ fun PrimaryChatTextFieldPasswordPreview() {
 @Composable
 @Preview(showBackground = false)
 fun PrimaryChatTextFieldErrorPreview() {
-    PrimaryChatTextField(
+    PrimaryTextField(
         value = "",
         leftIcon = R.drawable.ic_envelope,
         placeholder = "E-mail",
