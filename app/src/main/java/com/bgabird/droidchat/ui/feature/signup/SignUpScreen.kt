@@ -19,6 +19,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -90,6 +91,7 @@ private fun SignUpScreen(
                         .padding(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+
                     ProfilePictureSelection(
                         imageUri = formState.profilePictureUri,
                         modifier = Modifier
@@ -138,6 +140,7 @@ private fun SignUpScreen(
                         label = stringResource(id = R.string.feature_sign_up_password),
                         value = formState.password,
                         keyboardType = KeyboardType.Password,
+                        extraText = formState.passwordExtraText?.let { stringResource(id = it) },
                         onValueChange = {
                             onFormEvent(SignUpFormEvent.PasswordChanged(it))
                         }
@@ -150,6 +153,7 @@ private fun SignUpScreen(
                         value = formState.passwordConfirmation,
                         imeAction = ImeAction.Done,
                         keyboardType = KeyboardType.Password,
+                        extraText = formState.passwordExtraText?.let { stringResource(id = it) },
                         onValueChange = {
                             onFormEvent(SignUpFormEvent.PasswordConfirmationChanged(it))
                         }
