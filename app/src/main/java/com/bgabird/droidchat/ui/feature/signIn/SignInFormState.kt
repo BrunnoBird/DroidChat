@@ -9,5 +9,6 @@ data class SignInFormState(
     val emailError: Int? = null,
     @StringRes
     val passwordError: Int? = null,
-    val isLoading: Boolean = false
+    val isLoading: Boolean = false,
+    val hasError: Boolean = false
 )

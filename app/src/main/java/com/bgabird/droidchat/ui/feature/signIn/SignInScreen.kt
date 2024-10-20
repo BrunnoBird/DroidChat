@@ -24,6 +24,7 @@ import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,7 +38,11 @@ import com.bgabird.droidchat.ui.theme.DroidChatTheme
 
 @Composable
 fun SignInRoute(
-    viewModel: SignInViewModel = viewModel(),
+    viewModel: SignInViewModel = viewModel {
+        SignInViewModel(
+            formValidator = SignInFormValidator()
+        )
+    },
     navigateToSignUp: () -> Unit
 
 ) {
@@ -88,7 +93,8 @@ fun SignInScreen(
                 keyboardType = KeyboardType.Email,
                 errorMessage = formState.emailError?.let {
                     stringResource(id = it)
-                }
+                },
+                hasHelperText = false
             )
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -103,8 +109,20 @@ fun SignInScreen(
                 keyboardType = KeyboardType.Password,
                 errorMessage = formState.passwordError?.let {
                     stringResource(id = it)
-                }
+                },
+                hasHelperText = false
             )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            if (formState.hasError) {
+                Text(
+                    text = "E-mail ou senha inválido",
+                    color = MaterialTheme.colorScheme.error,
+                    style = MaterialTheme.typography.labelLarge,
+                    fontWeight = FontWeight.Bold
+                )
+            }
 
             Spacer(modifier = Modifier.height(98.dp))
 
