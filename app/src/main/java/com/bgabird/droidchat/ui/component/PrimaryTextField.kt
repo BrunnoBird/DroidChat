@@ -39,6 +39,7 @@ fun PrimaryTextField(
     errorMessage: String? = null,
     imeAction: ImeAction = ImeAction.Next,
     keyboardType: KeyboardType = KeyboardType.Text,
+    hasHelperText: Boolean = true,
     onInputChange: (text: String) -> Unit
 ) {
     var input by remember {
@@ -111,7 +112,7 @@ fun PrimaryTextField(
             )
         )
 
-        if (errorMessage != null) {
+        if (errorMessage != null && hasHelperText) {
             Text(
                 text = errorMessage,
                 modifier = Modifier.padding(start = 16.dp, top = 4.dp),

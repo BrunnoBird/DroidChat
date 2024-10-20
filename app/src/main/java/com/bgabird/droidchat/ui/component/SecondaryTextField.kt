@@ -44,7 +44,8 @@ fun SecondaryTextField(
     modifier: Modifier = Modifier,
     extraText: String? = null,
     keyboardType: KeyboardType = KeyboardType.Text,
-    imeAction: ImeAction = ImeAction.Next
+    imeAction: ImeAction = ImeAction.Next,
+    errorText: String? = null
 ) {
     var inputText by remember {
         mutableStateOf(value)
@@ -83,59 +84,72 @@ fun SecondaryTextField(
         Surface(
             color = MaterialTheme.colorScheme.surface
         ) {
-            Row(
-                modifier = Modifier
-                    .bottomBorder(Color.Black, 1.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Column(
+            Column {
+                Row(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1f)
+                        .bottomBorder(Color.Black, 1.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
-                        text = label,
-                        style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Bold),
-                        color = MaterialTheme.colorScheme.onSurface
-                    )
-
-                    Spacer(modifier = Modifier.height(4.dp))
-
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .weight(1f)
                     ) {
-                        Box(modifier = Modifier.weight(1f)) {
-                            innerTextField()
+                        Text(
+                            text = label,
+                            style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Bold),
+                            color = MaterialTheme.colorScheme.onSurface
+                        )
+
+                        Spacer(modifier = Modifier.height(4.dp))
+
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Box(modifier = Modifier.weight(1f)) {
+                                innerTextField()
+                            }
+
+                            extraText?.let {
+                                Text(
+                                    text = extraText,
+                                    modifier = Modifier.padding(4.dp),
+                                    color = ColorSuccess,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                        }
+                    }
+
+                    if (keyboardType.isPassword() && inputText.isNotEmpty()) {
+                        val visibilityIcon = if (passwordVisibility) {
+                            R.drawable.ic_visibility
+                        } else {
+                            R.drawable.ic_visibility_off
                         }
 
-                        extraText?.let {
-                            Text(
-                                text = extraText,
-                                modifier = Modifier.padding(4.dp),
-                                color = ColorSuccess,
-                                style = MaterialTheme.typography.bodySmall,
-                                fontWeight = FontWeight.Bold
+                        IconButton(
+                            onClick = { passwordVisibility = !passwordVisibility }
+                        ) {
+                            Icon(
+                                painter = painterResource(id = visibilityIcon),
+                                contentDescription = null,
+                                tint = MaterialTheme.colorScheme.primary
                             )
                         }
                     }
                 }
 
-                if (keyboardType.isPassword() && inputText.isNotEmpty()) {
-                    val visibilityIcon = if (passwordVisibility) {
-                        R.drawable.ic_visibility
-                    } else {
-                        R.drawable.ic_visibility_off
-                    }
+                errorText?.let {
+                    Spacer(modifier = Modifier.height(2.dp))
 
-                    IconButton(
-                        onClick = { passwordVisibility = !passwordVisibility }
-                    ) {
-                        Icon(
-                            painter = painterResource(id = visibilityIcon),
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.primary
-                        )
-                    }
+                    Text(
+                        text = errorText,
+                        color = MaterialTheme.colorScheme.error,
+                        style = MaterialTheme.typography.bodySmall,
+                        fontWeight = FontWeight.Bold
+                    )
                 }
             }
         }
@@ -150,7 +164,8 @@ private fun SecondaryTextFieldEmailPreview() {
             label = "E-mail",
             value = "",
             onValueChange = {},
-            keyboardType = KeyboardType.Email
+            keyboardType = KeyboardType.Email,
+            errorText = "Invalid e-mail"
         )
     }
 }
