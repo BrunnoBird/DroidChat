@@ -6,11 +6,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bgabird.droidchat.ui.validator.FormValidator
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-@HiltViewModel
 class SignInViewModel(
     private val formValidator: FormValidator<SignInFormState>
 ) : ViewModel() {
