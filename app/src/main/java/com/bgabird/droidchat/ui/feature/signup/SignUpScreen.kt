@@ -19,7 +19,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,7 +40,9 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun SignUpRoute(
-    viewModel: SignUpViewModel = viewModel()
+    viewModel: SignUpViewModel = viewModel {
+        SignUpViewModel(SignUpFormValidator())
+    }
 ) {
     val formState = viewModel.formState
 
@@ -108,6 +109,12 @@ private fun SignUpScreen(
                         value = formState.firstName,
                         onValueChange = {
                             onFormEvent(SignUpFormEvent.FirstNameChanged(it))
+                        },
+                        errorText = formState.firstNameError?.let {
+                            stringResource(
+                                id = it,
+                                stringResource(id = R.string.feature_sign_up_first_name)
+                            )
                         }
                     )
 
@@ -119,6 +126,12 @@ private fun SignUpScreen(
                         value = formState.lastName,
                         onValueChange = {
                             onFormEvent(SignUpFormEvent.LastNameChanged(it))
+                        },
+                        errorText = formState.lastNameError?.let {
+                            stringResource(
+                                id = it,
+                                stringResource(id = R.string.feature_sign_up_last_name)
+                            )
                         }
                     )
 
@@ -131,7 +144,8 @@ private fun SignUpScreen(
                         keyboardType = KeyboardType.Email,
                         onValueChange = {
                             onFormEvent(SignUpFormEvent.EmailChanged(it))
-                        }
+                        },
+                        errorText = formState.emailError?.let { stringResource(id = it) }
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
@@ -143,7 +157,8 @@ private fun SignUpScreen(
                         extraText = formState.passwordExtraText?.let { stringResource(id = it) },
                         onValueChange = {
                             onFormEvent(SignUpFormEvent.PasswordChanged(it))
-                        }
+                        },
+                        errorText = formState.passwordError?.let { stringResource(id = it) }
                     )
 
                     Spacer(modifier = Modifier.height(32.dp))
@@ -156,7 +171,8 @@ private fun SignUpScreen(
                         extraText = formState.passwordExtraText?.let { stringResource(id = it) },
                         onValueChange = {
                             onFormEvent(SignUpFormEvent.PasswordConfirmationChanged(it))
-                        }
+                        },
+                        errorText = formState.passwordConfirmationError?.let { stringResource(id = it) }
                     )
 
                     Spacer(modifier = Modifier.height(36.dp))

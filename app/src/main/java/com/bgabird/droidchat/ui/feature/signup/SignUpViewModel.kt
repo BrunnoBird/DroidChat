@@ -5,8 +5,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.bgabird.droidchat.R
+import com.bgabird.droidchat.ui.validator.FormValidator
 
-class SignUpViewModel : ViewModel() {
+class SignUpViewModel(
+    private val formValidator: FormValidator<SignUpFormState>
+) : ViewModel() {
     var formState by mutableStateOf(SignUpFormState())
         private set
 
@@ -61,14 +64,16 @@ class SignUpViewModel : ViewModel() {
         )
     }
 
-    private fun isValidForm(): Boolean {
-        return false
-    }
-
     private fun doSignUp() {
         if (isValidForm()) {
             formState = formState.copy(isLoading = true)
             //request API
         }
+    }
+
+    private fun isValidForm(): Boolean {
+        return !formValidator.validate(formState).also {
+            formState = it
+        }.hasError
     }
 }
