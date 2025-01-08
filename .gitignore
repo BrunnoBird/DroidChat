@@ -3,10 +3,13 @@
 /local.properties
 /.idea/caches
 /.idea/libraries
+/.idea/modules
+/.idea/deploymentTargetSelector.xml
 /.idea/modules.xml
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+/.idea/kotlinc.xml
 .DS_Store
 /build
 /captures
@@ -14,3 +17,78 @@
 .cxx
 local.properties
 /.idea/
+
+# Ignore Gradle files
+.gradle/
+build/
+.idea/
+*.iws
+*.iml
+
+# Ignore build outputs
+*.apk
+*.ap_
+*.aab
+*.jar
+*.aar
+*.so
+*.dex
+*.class
+bin/
+gen/
+out/
+captures/
+
+# Ignore generated files
+build-cache/
+.externalNativeBuild/
+.cxx/
+
+# Ignore temporary and system files
+Thumbs.db
+.DS_Store
+*.swp
+*~
+*.log
+*.bak
+*.tmp
+*.zip
+*.rar
+*.tar
+*.gz
+*.7z
+*.xz
+
+# Ignore Android Studio metadata
+.navigation/
+*.nav
+*.hprof
+
+# Ignore keystore files
+*.jks
+*.keystore
+
+# Ignore Proguard files
+proguard-rules.pro
+proguard-rules.txt# Ignore Compose preview files
+*.preview-data
+
+# Ignore lint reports
+lint-results*.html
+lint-results*.xml
+
+# Ignore Firebase configuration files
+google-services.json
+
+# Ignore secrets and sensitive data
+*.secret
+*.password
+*.key
+*.pem
+*.cer
+*.crt
+*.p12
+*.pfx
+
+# Ignore local configuration files
+local.properties

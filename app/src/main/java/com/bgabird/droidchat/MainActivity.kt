@@ -8,7 +8,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.bgabird.droidchat.navigation.ChatNavHost
 import com.bgabird.droidchat.ui.ChatApp
 import com.bgabird.droidchat.ui.theme.DroidChatTheme
 
