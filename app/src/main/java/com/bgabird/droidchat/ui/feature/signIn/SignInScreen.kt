@@ -29,8 +29,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.bgabird.droidchat.R
+import com.bgabird.droidchat.data.network.NetworkDataSourceImpl
 import com.bgabird.droidchat.ui.component.PrimaryButton
 import com.bgabird.droidchat.ui.component.PrimaryTextField
 import com.bgabird.droidchat.ui.theme.BackgroundGradient
@@ -38,11 +40,7 @@ import com.bgabird.droidchat.ui.theme.DroidChatTheme
 
 @Composable
 fun SignInRoute(
-    viewModel: SignInViewModel = viewModel {
-        SignInViewModel(
-            formValidator = SignInFormValidator()
-        )
-    },
+    viewModel: SignInViewModel = hiltViewModel(),
     navigateToSignUp: () -> Unit
 
 ) {
